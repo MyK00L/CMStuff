@@ -6,7 +6,7 @@ Useful stuff for the CMSocial coding platform.
 * [CMSdiff](#cmsdiff)
 
 ## CMScarica
-this script allows you to download all the fastest solutions for the problems an user solved.
+this script allows you to download the fastest solution for each problem an user solved.
 
 input:
 * username
