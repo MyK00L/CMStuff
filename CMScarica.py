@@ -55,6 +55,8 @@ for i in solved:
     print("downloading " + i + "...")
     payload={'action':'list','task_name':i}
     r=rq.post("https://training.olinfo.it/api/submission",json=payload,cookies=cookie)
+    if r.json()['success']==0:
+	    continue
     maxspeed=20000
     todown=[]
     for j in r.json()['submissions']:

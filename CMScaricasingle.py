@@ -25,7 +25,6 @@ cookie = {'token':r.cookies['token']}
 r=rq.post("https://training.olinfo.it/api/submission",json={'action':'list','task_name':problem},cookies=cookie)
 maxspeed=20000
 todown=[]
-print(r.json())
 for j in r.json()['submissions']:
     if j['score']==100.0:
         t=getspeed(j['id'],cookie)
