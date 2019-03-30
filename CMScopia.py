@@ -1,6 +1,7 @@
 import requests as rq
 import getpass
 import base64
+import time
 import sys
 import os
 
@@ -58,7 +59,7 @@ for i in r.json()['scores']:
         solved.append(i['name'])
 
 #---download solutions---
-print("About to download " + str(len(solved)) + " solutions.")
+print("About to copy " + str(len(solved)) + " solutions.")
 for i in solved:
     print("copying " + i + "...")
     payload={'action':'list','task_name':i}
@@ -84,6 +85,10 @@ for i in solved:
         print(i+" not copied")
     else:
         r=rq.get("https://training.olinfo.it/api/files/"+todown[0]['digest']+"/"+todown[0]['name'],cookies=cookie1)
-        payload={"files":{i+".%l":{"filename":"ace.cpp","data":base64.b64encode(bytes(r.text,'utf-8')).decode('utf-8')}},"action":"new","task_name":i}
+        payload={"files":{todown[0]['name'].split('.')[0]+".%l":{"filename":"ace.cpp","data":base64.b64encode(bytes(r.text,'utf-8')).decode('utf-8')}},"action":"new","task_name":i}
         r=rq.post("https://training.olinfo.it/api/submission",json=payload,cookies=cookie2)
+        while r.json().get('success',1)==0 and r.json().get('error','not')=='Too frequent submissions!':
+            print("retrying in 22 seconds")
+            time.sleep(22)
+            r=rq.post("https://training.olinfo.it/api/submission",json=payload,cookies=cookie2)
 sys.exit(0)
