@@ -32,19 +32,19 @@ for i in r.json()['scores']:
 for i in user1s:
     if not i in user2s:
         user1n2.append(i)
-user1n2.sort(key=lambda prob: taskscore[prob], reverse = True)
+user1n2.sort(key=lambda prob: taskscore.get(prob,0), reverse = True)
 
 for i in user2s:
     if not i in user1s:
         user2n1.append(i)
-user2n1.sort(key=lambda prob: taskscore[prob], reverse = True)
+user2n1.sort(key=lambda prob: taskscore.get(prob,0), reverse = True)
 
 print("Problems " + user1 + " solved and " + user2 + " didn't solve: ")
 for i in user1n2:
-    print(i+" "+str(taskscore[i]))
+    print(i+" "+str(taskscore.get(i,0)))
 
 print("Problems " + user2 + " solved and " + user1 + " didn't solve: ")
 for i in user2n1:
-    print(i+" "+str(taskscore[i]))
+    print(i+" "+str(taskscore.get(i,0)))
 input('Press ENTER to exit')
 sys.exit(0)
