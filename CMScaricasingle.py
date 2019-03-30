@@ -1,4 +1,5 @@
 import requests as rq
+import getpass
 import sys
 
 def getspeed(idn,cookie):
@@ -15,7 +16,7 @@ def getspeed(idn,cookie):
     return res
 
 username = input("username: ")
-password = input("password: ")
+password = getpass.getpass("password: ")
 problem = input("problem name: ")
 
 r = rq.post("https://training.olinfo.it/api/user",json={'action':'login','keep_signed':'false','password':password,'username':username})
@@ -24,6 +25,7 @@ cookie = {'token':r.cookies['token']}
 r=rq.post("https://training.olinfo.it/api/submission",json={'action':'list','task_name':problem},cookies=cookie)
 maxspeed=20000
 todown=[]
+print(r.json())
 for j in r.json()['submissions']:
     if j['score']==100.0:
         t=getspeed(j['id'],cookie)

@@ -1,4 +1,5 @@
 import requests as rq
+import getpass
 import sys
 import os
 
@@ -17,7 +18,7 @@ def getspeed(idn,cookie):
 
 #---input---
 username=input("username: ")
-password=input("password: ")
+password=getpass.getpass("password: ")
 folder=input("destination folder: ")
 
 if folder[len(folder)-1]!='/':
