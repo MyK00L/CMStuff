@@ -37,7 +37,7 @@ username and password are needed for the authentication in order to download the
 
 problem is the name of the problem one wants to download.
 
-## CMScarica
+## CMScopia
 this script allows you to submit the fastest solution for each problem an user solved to another user account.
 
 #### input:
