@@ -1,3 +1,4 @@
+# !! Deprecated - Use [cms_tools](https://github.com/MyK00L/cms_tools) instead
 # CMStuff
 Useful stuff for the CMSocial coding platform.
 ### Contents: ###
